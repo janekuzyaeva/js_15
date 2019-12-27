@@ -1,0 +1,32 @@
+<div class="container mt-3">
+    <div class="row">
+        <p class="col-1" style="text-align: center;"><strong>ID</strong></p>
+        <p class="col-2 mr-2" style="text-align: center;"><strong>First Name</strong></p>
+        <p class="col-2 mr-2" style="text-align: center;"><strong>Second Name</strong></p>
+        <p class="col-3 mr-2" style="text-align: center;"><strong>Phone</strong></p>
+    </div>
+</div>
+
+<div *ngIf="!loading; else noload">
+    <div class="container mb-10">
+        <div class="row col-12">
+            <input type="text" class="form-control" id="search" placeholder="Search" [(ngModel)]="search">
+        </div>
+    </div>
+    <br>
+
+    <app-view
+        *ngFor="let human of p | filter : search"
+        [people]="human"
+        (onDelete)="deletePeople($event)"
+    ></app-view>
+</div>
+
+<ng-template #noload>
+    <div class="container">
+        <br><br>
+        <h1 style="text-align: center;">Loading...</h1>
+    </div>
+</ng-template>
+
+

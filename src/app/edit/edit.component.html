@@ -1,0 +1,43 @@
+<div class="container">
+    <br>
+    <h3>Profile Editing</h3>
+        <form [formGroup]="form1" (ngSubmit)="submit">
+            <input type="hidden" formControlName="id">
+            <div class="col-12 mt-10">
+                <label for="name" class="col-12">First Name
+                    <input [ngClass]="{'is-invalid' : (form1.get('name').invalid && form1.get('name').touched), 'is-valid' : !form1.get('name').invalid && form1.get('name').touched}" type="text" class="form-control col-12" placeholder="Evgeniya" formControlName="name" #name>
+                    <div class="validation" *ngIf="form1.get('name').invalid && form1.get('name').touched">
+                        <small class="text-danger">Field cannot be empty!</small>
+                    </div>
+                </label>
+            </div>
+            <div class="col-12 mt-10">
+                <label for="surname" class="col-12">Second Name
+                <input type="text" [ngClass]="{'is-invalid' : (form1.get('surname').invalid && form1.get('surname').touched), 'is-valid' : !form1.get('surname').invalid && form1.get('surname').touched}" class="form-control"  placeholder="Kuzyaeva" formControlName="surname" #surname>
+                <div class="validation" >
+                    <small class="text-danger" *ngIf="form1.get('surname').invalid && form1.get('surname').touched">Field cannot be empty!</small>
+                </div>
+                </label>
+            </div>
+            <div class="col-12 mt-10">
+                <label for="telephone" class="col-12">Phone
+                <input type="tel" class="form-control" [ngClass]="{'is-invalid' : (form1.get('telephone').invalid && form1.get('telephone').touched), 'is-valid' : !form1.get('telephone').invalid && form1.get('telephone').touched}" placeholder="8 (987) 654 3210" formControlName="telephone" [textMask]="{mask: mask}" [(ngModel)]="myModel" #telephone>
+                <div class="validation" *ngIf="form1.get('telephone').invalid && form1.get('telephone').touched">
+                    <small class="text-danger" *ngIf="form1.get('telephone').errors.required">Field cannot be empty!</small>
+                    <small class="text-danger" *ngIf="form1.get('telephone').errors.minlength">Length {{form1.get('telephone').errors.minlength.actualLength}} of {{form1.get('telephone').errors.minlength.requiredLength}}</small>
+                </div>
+                </label>
+            </div>
+            <br>
+            <label class="col-12" for="button">
+                <button type="submit" class="btn btn-success col-12" (click)="savePeople(id)" name="button" [disabled]="form1.invalid">Save</button>
+            </label>
+        </form>
+</div>
+
+
+
+
+
+
+ 
